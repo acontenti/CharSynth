@@ -1,29 +1,73 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/linearLayout_tempo"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".MainActivity"
-            android:id="@+id/scrollView">
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textMultiLine|textNoSuggestions"
+                android:imeOptions="flagNoExtractUi"
+                android:textColor="@drawable/edit_text"
+                android:textIsSelectable="true"
+                android:typeface="monospace"
+                android:id="@+id/editText"
+                android:background="@color/wb"
+                android:text="@string/app_intro"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout_tempo"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
-        <EditText
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text|textMultiLine|textNoSuggestions"
-            android:textColor="@drawable/edit_text"
-            android:id="@+id/editText"
-            android:background="@color/wb"
-            android:text="@string/app_intro"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:textSize="20sp"/>
+            android:minHeight="48dp"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="@string/tempo"
+            android:id="@+id/textView_tempo"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"/>
 
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekBar_tempo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:dsb_min="10"
+            app:dsb_max="500"
+            app:dsb_value="120"
+            app:dsb_indicatorFormatter="%d bpm"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>
+

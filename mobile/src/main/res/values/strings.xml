@@ -6,6 +6,7 @@
     <string name="action_play">Play</string>
     <string name="action_pause">Pause</string>
     <string name="action_stop">Stop</string>
-    <string name="app_intro">Welcome to CharSynth\npress the play button to hear how this sentence sounds\n\nNotes are expressed by alphanumeric characters and pauses by spaces\n\nOnly alphanumeric characters and spaces are allowed\nOther ones will be filtered out except from newline that will be although ignored during playback\n\nNotes frequencies start from the lowest tone 0 and go up to the highest one Z in numeric and alphabetic order</string>
+    <string name="app_intro">Welcome to CharSynth\n\nPress the play button to hear how this sentence sounds\n\nNotes are expressed by alphanumeric characters and pauses by spaces\n\nOnly alphanumeric characters and spaces are allowed\nOther ones will be filtered out except from newline that will be although ignored during playback\n\nNotes frequencies start from the lowest tone 0 and go up to the highest one Z in numeric and alphabetic order</string>
     <string name="action_clear">Clear</string>
+    <string name="tempo">Tempo</string>
 </resources>
