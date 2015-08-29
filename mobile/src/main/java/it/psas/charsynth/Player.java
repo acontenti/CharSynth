@@ -4,10 +4,13 @@ package it.psas.charsynth;
  * Created by Project s.a.s. on 28/08/2015.
  * Copyright © 1996, 2015 PROJECT s.a.s. All Rights Reserved.
  */
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.preference.PreferenceManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -28,6 +31,10 @@ public class Player {
     private boolean running = true;
     private final Object lock = new Object();
     public PlayerWatcher playerWatcher;
+    private int noteType = 4;
+    private boolean newlineaspause = false;
+    private boolean loop = false;
+
     public enum STATE {PLAY, PAUSE, STOP}
 
     Player(Context context, EditText editText, InputMethodManager inputMethodManager) {
@@ -45,6 +52,16 @@ public class Player {
         soundThread.start();
         parseThread = new ParseThread();
         parseThread.start();
+        updateSettings();
+    }
+
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
+    public void updateSettings() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(c);
+        newlineaspause = sharedPref.getBoolean(c.getString(R.string.newlineaspause_checkbox_key), newlineaspause);
     }
 
     public boolean isPlaying() {
@@ -101,16 +118,29 @@ public class Player {
                 synchronized (lock) {
                     while (running && i < score.length) {
                         playerWatcher.onTick(i);
-                        if (score[i] != '\n') {
-                            int pos = alphabet.indexOf(score[i]);
-                            f = pos * 50;
-                            try {
-                                Thread.sleep(tempo);
-                            } catch (InterruptedException e) {e.printStackTrace();}
+                        if (score[i] == '\n') {
+                            if (newlineaspause) {
+                                score[i] = ' ';
+                            }
+                            else {
+                                i++;
+                                continue;
+                            }
                         }
+                        int pos = alphabet.indexOf(score[i]);
+                        f = pos * 50;
+                        try {
+                            Thread.sleep(tempo / noteType);
+                        } catch (InterruptedException e) {e.printStackTrace();}
                         i++;
                     }
-                    if (running) stopThread();
+                    if (loop) {
+                        i = 0;
+                        continue;
+                    }
+                    if (running) {
+                        stopThread();
+                    }
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {e.printStackTrace();}

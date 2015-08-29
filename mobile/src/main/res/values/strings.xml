@@ -9,4 +9,11 @@
     <string name="app_intro">Welcome to CharSynth\n\nPress the play button to hear how this sentence sounds\n\nNotes are expressed by alphanumeric characters and pauses by spaces\n\nOnly alphanumeric characters and spaces are allowed\nOther ones will be filtered out except from newline that will be although ignored during playback\n\nNotes frequencies start from the lowest tone 0 and go up to the highest one Z in numeric and alphabetic order</string>
     <string name="action_clear">Clear</string>
     <string name="tempo">Tempo</string>
+    <string name="preference_category_about">About</string>
+    <string name="copyright">Copyright \u00A9 1984, 2015 Project s.a.s.</string>
+    <string name="preference_newlineaspause">Newline as pause</string>
+    <string name="preference_newlineaspause_desc">The newline character will be considered as a pause</string>
+    <string name="newlineaspause_checkbox_key">newlineaspause_checkbox</string>
+    <string name="github_repo_url">https://github.com/acontenti/CharSynth</string>
+    <string name="loop">Loop</string>
 </resources>

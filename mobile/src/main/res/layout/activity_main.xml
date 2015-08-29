@@ -13,6 +13,7 @@
         android:id="@+id/scrollView">
 
         <LinearLayout
+            android:id="@+id/scrollView_linearLayout"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -26,7 +27,7 @@
                 android:textIsSelectable="true"
                 android:typeface="monospace"
                 android:id="@+id/editText"
-                android:background="@color/wb"
+                android:background="@android:color/transparent"
                 android:text="@string/app_intro"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
@@ -42,6 +43,8 @@
         android:id="@+id/linearLayout_tempo"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
@@ -50,7 +53,6 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:gravity="center_vertical"
-            android:padding="4dp"
             android:text="@string/tempo"
             android:id="@+id/textView_tempo"
             android:textSize="18sp"
