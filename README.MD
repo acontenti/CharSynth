@@ -1,3 +1,2 @@
-CharSynth
-----
-Copyright © 1996, 2015 PROJECT s.a.s. All Rights Reserved.
+#CharSynth
+Copyright Â© 2015 Alessandro Contenti.
