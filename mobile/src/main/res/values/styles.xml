@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/pd</item>
         <item name="colorAccent">@color/a</item>
         <item name="android:windowBackground">@color/wb</item>
+		<item name="android:editTextBackground">@color/wb</item>
     </style>
 
     <color name="p">#009688</color>

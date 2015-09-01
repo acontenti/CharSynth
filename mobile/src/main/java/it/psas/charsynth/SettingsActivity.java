@@ -1,8 +1,8 @@
 package it.psas.charsynth;
 
 /**
- * Created by Project s.a.s. on 30/08/2015.
- * Copyright © 1996, 2015 PROJECT s.a.s. All Rights Reserved.
+ * Created by Alessandro Contenti on 30/08/2015.
+ * Copyright © 2015 Alessandro Contenti.
  */
 
 import android.os.Bundle;
@@ -18,10 +18,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle bundle) {
-            super.onCreate(bundle);
-            addPreferencesFromResource(R.xml.pref_general);
-        }
-    }
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.pref_general);
+		}
+	}
 }

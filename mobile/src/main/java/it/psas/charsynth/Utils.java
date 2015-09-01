@@ -6,7 +6,6 @@ package it.psas.charsynth;
  */
 
 import android.text.InputFilter;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
 public class Utils {
@@ -14,7 +13,7 @@ public class Utils {
     public static InputFilter editTextInputFilter = new InputFilter() {
         @Override
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            if (source instanceof SpannableStringBuilder) {
+            /*if (source instanceof SpannableStringBuilder) {
                 SpannableStringBuilder sourceAsSpannableBuilder = (SpannableStringBuilder)source;
                 for (int i = end - 1; i >= start; i--) {
                     char currentChar = source.charAt(i);
@@ -32,7 +31,8 @@ public class Utils {
                     }
                 }
                 return filteredStringBuilder.toString();
-            }
+            }*/
+			return source.toString().replaceAll("[^a-zA-Z0-9 \n]", "");
         }
     };
 }

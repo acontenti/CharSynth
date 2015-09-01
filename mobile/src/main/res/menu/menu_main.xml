@@ -19,7 +19,7 @@
           android:icon="@drawable/ic_action_loop"
           android:checkable="true"
           android:checked="false"
-          app:showAsAction="ifRoom"/>
+          app:showAsAction="never"/>
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           app:showAsAction="never"/>

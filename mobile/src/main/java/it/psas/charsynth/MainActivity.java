@@ -1,8 +1,8 @@
 package it.psas.charsynth;
 
 /**
- * Created by Project s.a.s. on 28/08/2015.
- * Copyright © 1996, 2015 PROJECT s.a.s. All Rights Reserved.
+ * Created by Alessandro Contenti on 28/08/2015.
+ * Copyright © 2015 Alessandro Contenti.
  */
 
 import android.content.Context;
@@ -61,8 +61,10 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         player.stopFromCallback();
                         setPlayMenuToPauseStop();
-                        editText.setSelection(0);
-                    }
+						if (player.isGoingUpAfterFinish()) {
+							editText.setSelection(0);
+						}
+					}
                 });
             }
             @Override
@@ -79,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
         tempo_bar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar discreteSeekBar, int i, boolean b) {
-                player.setTempo((long) (60000.0f / (float) i));
+                player.setTempo((float) i);
             }
-            @Override public void onStartTrackingTouch(DiscreteSeekBar discreteSeekBar) { }
+            @Override public void onStartTrackingTouch(DiscreteSeekBar discreteSeekBar) {}
             @Override public void onStopTrackingTouch(DiscreteSeekBar discreteSeekBar) {}
         });
         chackLaunchFromSendIntent(getIntent());

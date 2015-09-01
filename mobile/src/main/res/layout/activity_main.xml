@@ -27,7 +27,6 @@
                 android:textIsSelectable="true"
                 android:typeface="monospace"
                 android:id="@+id/editText"
-                android:background="@android:color/transparent"
                 android:text="@string/app_intro"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"

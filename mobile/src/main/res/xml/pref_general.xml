@@ -1,24 +1,58 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:key="@string/newlineaspause_checkbox_key"
-        android:title="@string/preference_newlineaspause"
-        android:summary="@string/preference_newlineaspause_desc"
-        android:persistent="true"
-        android:defaultValue="false" />
+	<PreferenceCategory
+		android:title="@string/preference_category_general">
 
-    <PreferenceCategory
-        android:title="@string/preference_category_about">
+		<SwitchPreference
+			android:defaultValue="true"
+			android:key="@string/shortorextended_switch_key"
+			android:persistent="true"
+			android:summary="@string/preference_shortorextended_desc"
+			android:summaryOn="@string/preference_shortorextended_desc"
+			android:summaryOff="@string/preference_shortorextended_desc_off"
+			android:title="@string/preference_shortorextended"/>
 
-        <Preference
-            android:title="@string/app_name"
-            android:icon="@drawable/ic_action_logo"
-            android:summary="@string/copyright">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/github_repo_url"/>
-        </Preference>
+		<ListPreference
+			android:defaultValue="n4"
+			android:key="@string/basenote_list_key"
+			android:persistent="true"
+			android:summary="@string/preference_basenote_desc"
+			android:title="@string/preference_basenote"
+			android:entries="@array/note_names"
+			android:entryValues="@array/note_values"
+			android:dialogTitle="@string/preference_basenote_dialog"/>
 
-    </PreferenceCategory>
+		<SwitchPreference
+			android:defaultValue="false"
+			android:key="@string/newlineaspause_checkbox_key"
+			android:persistent="true"
+			android:summary="@string/preference_newlineaspause_desc"
+			android:summaryOn="@string/preference_newlineaspause_desc"
+			android:summaryOff="@string/preference_newlineaspause_desc_off"
+			android:title="@string/preference_newlineaspause"/>
+
+		<SwitchPreference
+			android:defaultValue="true"
+			android:key="@string/goupafterfinish_checkbox_key"
+			android:persistent="true"
+			android:summary="@string/preference_goupafterfinish_desc"
+			android:summaryOn="@string/preference_goupafterfinish_desc"
+			android:summaryOff="@string/preference_goupafterfinish_desc_off"
+			android:title="@string/preference_goupafterfinish"/>
+
+	</PreferenceCategory>
+	<PreferenceCategory
+		android:title="@string/preference_category_about">
+
+		<Preference
+			android:icon="@drawable/ic_action_logo"
+			android:summary="@string/copyright"
+			android:title="@string/app_name">
+			<intent
+				android:action="android.intent.action.VIEW"
+				android:data="@string/github_repo_url"/>
+		</Preference>
+
+	</PreferenceCategory>
 
 </PreferenceScreen>

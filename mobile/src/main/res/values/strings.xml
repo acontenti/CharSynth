@@ -1,6 +1,21 @@
 <resources>
+	<array name="note_names">
+		<item>Half note (1/2)</item>
+		<item>Quarter note (1/4)</item>
+		<item>Eighth note (1/8)</item>
+		<item>Sixteenth note (1/16)</item>
+		<item>Thirty-second note (1/32)</item>
+		<item>Sixty-fourth note (1/64)</item>
+	</array>
+	<array name="note_values">
+		<item>n120</item>
+		<item>n60</item>
+		<item>n30</item>
+		<item>n15</item>
+		<item>n7.5</item>
+		<item>n3.75</item>
+	</array>
     <string name="app_name">CharSynth</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_play">Play</string>
@@ -9,11 +24,25 @@
     <string name="app_intro">Welcome to CharSynth\n\nPress the play button to hear how this sentence sounds\n\nNotes are expressed by alphanumeric characters and pauses by spaces\n\nOnly alphanumeric characters and spaces are allowed\nOther ones will be filtered out except from newline that will be although ignored during playback\n\nNotes frequencies start from the lowest tone 0 and go up to the highest one Z in numeric and alphabetic order</string>
     <string name="action_clear">Clear</string>
     <string name="tempo">Tempo</string>
-    <string name="preference_category_about">About</string>
-    <string name="copyright">Copyright \u00A9 1984, 2015 Project s.a.s.</string>
+	<string name="preference_category_about">About</string>
+	<string name="preference_category_general">About</string>
+    <string name="copyright">Copyright \u00A9 2015 Alessandro Contenti.</string>
     <string name="preference_newlineaspause">Newline as pause</string>
-    <string name="preference_newlineaspause_desc">The newline character will be considered as a pause</string>
-    <string name="newlineaspause_checkbox_key">newlineaspause_checkbox</string>
+	<string name="preference_newlineaspause_desc">The newline character will be considered as a pause</string>
+	<string name="preference_newlineaspause_desc_off">The newline character will be ignored</string>
+	<string name="newlineaspause_checkbox_key">newlineaspause_checkbox</string>
+	<string name="goupafterfinish_checkbox_key">goupafterfinish_checkbox</string>
+	<string name="basenote_list_key">basenote_list</string>
     <string name="github_repo_url">https://github.com/acontenti/CharSynth</string>
     <string name="loop">Loop</string>
+	<string name="preference_basenote_desc">The note value of a single character</string>
+	<string name="preference_basenote">Base note value</string>
+	<string name="preference_goupafterfinish_desc">When the playback finishes, go back to the first character of the text</string>
+	<string name="preference_goupafterfinish_desc_off">When the playback finishes, keep the cursor after the last-played character</string>
+	<string name="preference_goupafterfinish">Go up after playback finish</string>
+	<string name="preference_basenote_dialog">Choose base note value</string>
+	<string name="shortorextended_switch_key">shortorextended_switch_key</string>
+	<string name="preference_shortorextended_desc">Use a short set of characters ignoring letters capitalization</string>
+	<string name="preference_shortorextended_desc_off">Use an extended set of characters separating lower-case from upper-case ones</string>
+	<string name="preference_shortorextended">Use short character set</string>
 </resources>
