@@ -1,0 +1,8 @@
+<resources>
+	<declare-styleable name="RadioImageView">
+		<attr name="primaryColor" format="color"/>
+		<attr name="backgroundColor" format="color"/>
+		<attr name="srcOn" format="reference"/>
+		<attr name="srcOff" format="reference"/>
+	</declare-styleable>
+</resources>

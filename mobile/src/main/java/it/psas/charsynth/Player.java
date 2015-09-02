@@ -1,7 +1,7 @@
 package it.psas.charsynth;
 
 /**
- * Created by Alessandro Contenti on 28/08/2015.
+ * Created by Alessandro Contenti. on 28/08/2015.
  * Copyright © 2015 Alessandro Contenti.
  */
 
@@ -22,7 +22,7 @@ public class Player {
 	public static final float basefrequency_short = 110.0f;
 	public static final float basefrequency_extended = 55.0f;
 	public enum STATE {PLAY, PAUSE, STOP}
-	public enum WAVE {SINE, TRIANGLE, SAWTOOTH, INV_SAWTOOTH, SQUARE}
+	public enum WAVE {SINE, TRIANGLE, SAWTOOTH, INVERSE_SAWTOOTH, SQUARE}
     private int minbufferlength;
     private AudioTrack audioTrack;
     private ParseThread parseThread;
@@ -38,13 +38,13 @@ public class Player {
     private float tempo = 120;
     private boolean running = true;
     private final Object lock = new Object();
-    public PlayerWatcher playerWatcher;
+    private PlayerWatcher playerWatcher;
     private float noteValue = 30;
     private boolean newlineaspause = false;
     private boolean loop = false;
 	private boolean goupafterfinish = true;
+	private boolean soe;
 	private WAVE wave = WAVE.SINE;
-
 
     Player(Context context, EditText editText, InputMethodManager inputMethodManager) {
         c = context;
@@ -64,7 +64,15 @@ public class Player {
         updateSettings();
     }
 
-    public void setLoop(boolean loop) {
+	public void setWave(WAVE wave) {
+		this.wave = wave;
+	}
+
+	public WAVE getWave() {
+		return wave;
+	}
+
+	public void setLoop(boolean loop) {
         this.loop = loop;
     }
 
@@ -77,7 +85,7 @@ public class Player {
         newlineaspause = sharedPref.getBoolean(c.getString(R.string.newlineaspause_checkbox_key), newlineaspause);
 		noteValue = Float.parseFloat(sharedPref.getString(c.getString(R.string.basenote_list_key), "n" + noteValue).replaceAll("[^0-9.]", ""));
 		goupafterfinish = sharedPref.getBoolean(c.getString(R.string.goupafterfinish_checkbox_key), goupafterfinish);
-		boolean soe = sharedPref.getBoolean(c.getString(R.string.shortorextended_switch_key), false);
+		soe = sharedPref.getBoolean(c.getString(R.string.shortorextended_switch_key), false);
 		basefrequency = soe ? basefrequency_short : basefrequency_extended;
 		alphabet = soe ? alphabet_short : alphabet_extended;
     }
@@ -95,7 +103,8 @@ public class Player {
         playing = STATE.PLAY;
         et.setEnabled(false);
         imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
-        score = et.getText().toString().toLowerCase().replaceAll("[^a-zA-Z0-9 \n]", "").toCharArray();
+		if (soe) score = et.getText().toString().toLowerCase().replaceAll("[^a-zA-Z0-9 \n]", "").toCharArray();
+		else score = et.getText().toString().replaceAll("[^a-zA-Z0-9 \n]", "").toCharArray();
         parseThread.startThread();
     }
 
@@ -218,6 +227,12 @@ public class Player {
 		switch (wave) {
 			case SINE:
 				return Math.sin(phase);
+			case TRIANGLE:
+				return (2 / Math.PI) * Math.asin(Math.sin(phase));
+			case SAWTOOTH:
+				return (1 / Math.PI) * (phase - Math.PI);
+			case INVERSE_SAWTOOTH:
+				return -(1 / Math.PI) * (phase - Math.PI);
 			case SQUARE:
 				return Math.signum(Math.sin(phase));
 			default:
