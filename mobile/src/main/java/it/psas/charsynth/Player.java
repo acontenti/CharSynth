@@ -22,7 +22,7 @@ public class Player {
 	public static final float basefrequency_short = 110.0f;
 	public static final float basefrequency_extended = 55.0f;
 	public enum STATE {PLAY, PAUSE, STOP}
-	public enum WAVE {SINE, TRIANGLE, SAWTOOTH, INVERSE_SAWTOOTH, SQUARE}
+	public enum WAVE {SINE, TRIANGLE, SAWTOOTH, SQUARE}
     private int minbufferlength;
     private AudioTrack audioTrack;
     private ParseThread parseThread;
@@ -155,8 +155,12 @@ public class Player {
                             }
                         }
                         int pos = alphabet.indexOf(score[i]);
-                        frequency = basefrequency * Math.pow(ROOT12OF2, pos);
-                        try {
+						if (pos == 0) {
+							frequency = 0;
+						} else {
+							frequency = basefrequency * Math.pow(ROOT12OF2, pos);
+						}
+						try {
                             Thread.sleep((long) (1000.0f * noteValue / tempo));
                         } catch (InterruptedException e) {e.printStackTrace();}
                         i++;
@@ -231,8 +235,6 @@ public class Player {
 				return (2 / Math.PI) * Math.asin(Math.sin(phase));
 			case SAWTOOTH:
 				return (1 / Math.PI) * (phase - Math.PI);
-			case INVERSE_SAWTOOTH:
-				return -(1 / Math.PI) * (phase - Math.PI);
 			case SQUARE:
 				return Math.signum(Math.sin(phase));
 			default:

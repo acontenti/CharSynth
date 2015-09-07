@@ -20,10 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import it.psas.charsynth.Player.WAVE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -112,7 +113,23 @@ public class MainActivity extends AppCompatActivity {
 		final Dialog dialog = new Dialog(this);
 		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		dialog.setContentView(R.layout.main_settings_dialog);
-		final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.radio_group);
+		RadioBar radioBar = (RadioBar) dialog.findViewById(R.id.radio_bar);
+		radioBar.setOnSelectedItemChangeListener(new RadioBar.OnSelectedItemChangeListener() {
+			@Override
+			public void onSelectedItemChange(RadioBar radioBar, int checkedId, int position) {
+				player.setWave(WAVE.values()[position]);
+				dialog.dismiss();
+			}
+		});
+		radioBar.checkAtPosition(player.getWave().ordinal());
+		dialog.show();
+	}
+/*
+	private void showFabDialog2() {
+		final Dialog dialog = new Dialog(this);
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		dialog.setContentView(R.layout.main_settings_dialog);
+		final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.radio_bar);
 		final RadioImageView[] radioImageViews = new RadioImageView[radioGroup.getChildCount()];
 		final Player.WAVE[] waves = Player.WAVE.values();
 		for (int i = 0, radioImageViewsLength = radioImageViews.length; i < radioImageViewsLength; i++) {
@@ -134,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 		((RadioImageView) radioGroup.getChildAt(player.getWave().ordinal())).setChecked(true);
 		dialog.show();
 	}
-
+*/
 	private void chackLaunchFromSendIntent(Intent recieverIntent) {
         if (recieverIntent != null && recieverIntent.getAction().equals(Intent.ACTION_SEND) && recieverIntent.getType().equals("text/plain")) {
             String sharedText = recieverIntent.getStringExtra(Intent.EXTRA_TEXT);

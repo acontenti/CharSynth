@@ -6,13 +6,13 @@
 	android:background="@android:color/transparent"
 	android:orientation="vertical">
 
-	<RadioGroup
+	<it.psas.charsynth.RadioBar
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:background="@android:drawable/dialog_holo_light_frame"
-		android:orientation="horizontal"
+		app:orientation="horizontal"
 		android:layout_gravity="center_horizontal"
-		android:id="@+id/radio_group">
+		android:id="@+id/radio_bar">
 
 		<it.psas.charsynth.RadioImageView
 			android:id="@+id/radio_sine"
@@ -36,18 +36,11 @@
 			app:srcOff="@drawable/ic_action_saw"/>
 
 		<it.psas.charsynth.RadioImageView
-			android:id="@+id/radio_inverse_sawtooth"
-			android:layout_height="?attr/actionBarSize"
-			android:layout_width="?attr/actionBarSize"
-			app:srcOn="@drawable/ic_action_inversesaw_inverse"
-			app:srcOff="@drawable/ic_action_inversesaw"/>
-
-		<it.psas.charsynth.RadioImageView
 			android:id="@+id/radio_square"
 			android:layout_height="?attr/actionBarSize"
 			android:layout_width="?attr/actionBarSize"
 			app:srcOn="@drawable/ic_action_square_inverse"
 			app:srcOff="@drawable/ic_action_square"/>
 
-	</RadioGroup>
+	</it.psas.charsynth.RadioBar>
 </LinearLayout>

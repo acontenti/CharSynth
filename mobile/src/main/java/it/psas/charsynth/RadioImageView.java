@@ -18,6 +18,11 @@ import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 
+/**
+ * Created by Alessandro Contenti on 03/09/2015.
+ * Copyright © 1996, 2015 Alessandro Contenti. All Rights Reserved.
+ */
+
 public class RadioImageView extends ImageButton {
 	private static final long ANIMATION_DURATION = 250;
 	private static final Interpolator ANIMATION_INTERPOLATOR = new AccelerateDecelerateInterpolator();
@@ -86,7 +91,11 @@ public class RadioImageView extends ImageButton {
 		this.checked = checked;
 		setBackgroundColor(checked ? mPrimaryColor : mBackgroundColor);
 		setImageDrawable(checked ? mSrcOnDrawable : mSrcOffDrawable);
-		onToggleListener.onToggle(this, checked);
+		if (onToggleListener != null) onToggleListener.onToggle(this, checked);
+	}
+
+	public boolean isChecked() {
+		return checked;
 	}
 
 	@Override
@@ -102,11 +111,6 @@ public class RadioImageView extends ImageButton {
 		backgroundColorAnimator.setInterpolator(ANIMATION_INTERPOLATOR);
 		backgroundColorAnimator.start();
 	}
-
-/*	@Override
-	public void setImageDrawable(Drawable drawable) {
-		animateImageChange(drawable);
-	}*/
 
 	public interface OnToggleListener {
 		void onToggle (RadioImageView view, boolean state);
@@ -126,17 +130,5 @@ public class RadioImageView extends ImageButton {
 			if(onClickListener != null) onClickListener.onClick(this);
 		}
 		return super.dispatchKeyEvent(event);
-	}
-
-	public void animateImageChange(final Drawable image) {
-		anim_out.setAnimationListener(new Animation.AnimationListener() {
-			@Override public void onAnimationStart(Animation animation) {}
-			@Override public void onAnimationRepeat(Animation animation) {}
-			@Override public void onAnimationEnd(Animation animation) {
-				RadioImageView.super.setImageDrawable(image);
-				RadioImageView.super.startAnimation(anim_in);
-			}
-		});
-		super.startAnimation(anim_out);
 	}
 }
